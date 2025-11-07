@@ -1,33 +1,33 @@
 create database anime;
 use anime;
 
-CREATE TABLE animes (
+create table animes (
     id INT PRIMARY KEY AUTO_INCREMENT,
     titulo VARCHAR(50),
     genero VARCHAR(30)
 );
 
-CREATE TABLE personagens (
+create table personagens (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50),
     anime_id INT,
     FOREIGN KEY (anime_id) REFERENCES animes(id)
 );
 
-CREATE TABLE habilidades (
+create table habilidades (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50),
     personagem_id INT,
     FOREIGN KEY (personagem_id) REFERENCES personagens(id)
 );
 
-INSERT INTO animes (titulo, genero) VALUES
+insert into animes (titulo, genero) values
 ('Naruto', 'Ação'),
 ('One Piece', 'Aventura'),
 ('Attack on Titan', 'Drama'),
 ('Demon Slayer', 'Fantasia');
 
-INSERT INTO personagens (nome, anime_id) VALUES
+insert into personagens (nome, anime_id) values
 ('Naruto Uzumaki', 1),
 ('Sasuke Uchiha', 1),
 ('Luffy', 2),
@@ -37,7 +37,7 @@ INSERT INTO personagens (nome, anime_id) VALUES
 ('Goku', NULL), 
 ('Baki Hanma', NULL); 
 
-INSERT INTO habilidades (nome, personagem_id) VALUES
+insert into habilidades (nome, personagem_id) values
 ('Rasengan', 1),
 ('Chidori', 2),
 ('Gomu Gomu no Pistol', 3),
@@ -47,7 +47,7 @@ INSERT INTO habilidades (nome, personagem_id) VALUES
 ('Poder Perdido', NULL); 
 
 -- selecionar
-SELECT 
+select 
     p.nome AS Personagem,
     a.titulo AS Anime,
     a.genero AS Genero
@@ -56,7 +56,7 @@ INNER JOIN animes a ON p.anime_id = a.id;
 -- selecionar
 
 -- selecionar
-SELECT 
+select 
     p.nome AS Personagem,
     a.titulo AS Anime,
     h.nome AS Habilidade
@@ -66,7 +66,7 @@ LEFT JOIN habilidades h ON p.id = h.personagem_id;
 -- selecionar
 
 -- selecionar
-SELECT 
+select 
     p.nome AS Personagem,
     a.titulo AS Anime
 FROM personagens p
@@ -74,7 +74,7 @@ LEFT JOIN animes a ON p.anime_id = a.id
 
 UNION 
 
-SELECT	
+select	
     p.nome AS Personagem,
     a.titulo AS Anime
 FROM personagens p
@@ -82,7 +82,7 @@ RIGHT JOIN animes a ON p.anime_id = a.id;
 -- selecionar
 
 -- selecionar
-SELECT 
+select 
     p.nome AS Personagem,
     h.nome AS Habilidade,
     a.titulo AS Anime
@@ -92,7 +92,7 @@ INNER JOIN animes a ON p.anime_id = a.id;
 -- selecionar
 
 -- selecionar
-SELECT 
+select 
     a.titulo AS Anime,
     COUNT(p.id) AS Total_Personagens
 FROM animes a
